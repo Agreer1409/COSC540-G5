@@ -1,0 +1,13 @@
+.navbar-img {
+    width: 40px;             /* Adjust as needed */
+    height: 40px;            /* Adjust as needed */
+    border-radius: 50%;      /* Makes it circular */
+    object-fit: cover;       /* Ensures the image fills the container */
+    margin-right: 10px;      /* Spacing between the image and button */
+}
+  
+.navbar-container {
+    display: flex;
+    align-items: center;
+}
+  
