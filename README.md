@@ -24,12 +24,12 @@
 
 ## Database: Install PostgreSQL, create a database fitness_db, and update the URI in app.py.
 
-### use the origin Auth0, only need to setup at server side. 
-### client side use api get the Auth0 account information from server side.
-### when need to setup administrator account need to set rule and role in Auth0 account.
-### pan attention about auth0-domain, client-id, client-secret, and api-audience in the code.
+### 1. use the origin Auth0, only need to setup at server side. 
+### 2. client side use api get the Auth0 account information from server side.
+### 3. when need to setup administrator account need to set rule and role in Auth0 account.
+### 4. pan attention about auth0-domain, client-id, client-secret, and api-audience in the code.
 
-## update Backend Setup:
+## update Backend Setup, Frontend Setup as original:
 ### 1. Navigate to backend directory
 
 ### 2. Set virual environment by running `python3 -m venv venv`
