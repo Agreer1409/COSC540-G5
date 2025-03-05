@@ -1,6 +1,6 @@
-import Home from "./components/Home"
+import App from "./App"
 
 const routes = [
-    {path:'/' , element:<Home />},
+    {path:'/' , element:<App />},
 ]
 export default routes
