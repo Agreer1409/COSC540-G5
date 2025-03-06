@@ -1,0 +1,12 @@
+# Ignore a specific file
+ignoreme.txt
+
+# Ignore an entire directory
+venv/
+
+# Ignore all files of a certain type
+# for example: *.log
+
+# Ignore a subdirectory in a specific path
+# my_folder/secret/
+client/node_modules
