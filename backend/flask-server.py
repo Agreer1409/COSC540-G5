@@ -8,41 +8,17 @@ from jose import jwk, jwt
 from functools import wraps
 from config import Config
 
+# Importing the auth blueprint and auth decorator
+from routes.auth import auth_bp, requires_auth
+
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
-app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATBASE_URI
+app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Config.SQLALCHEMY_TRACK_MODIFICATIONS
 db.init_app(app)
 
-jwks_url = f'https://{AUTH0_DOMAIN}/.well-known/jwks.json'
-jwks = requests.get(jwks_url).json()
-
-# Updated endpoint to return all public Auth0 config
-@app.route('/api/config', methods=['GET'])
-def get_config():
-    return jsonify({
-        'auth0_domain': AUTH0_DOMAIN,
-        'client_id': CLIENT_ID,
-        'audience': API_AUDIENCE
-    })
-
-def requires_auth(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = request.headers.get('Authorization', None)
-        if not token:
-            return jsonify({'message': 'Token is missing'}), 401
-        try:
-            unverified_header = jwt.get_unverified_header(token.split()[1])
-            rsa_key = next(key for key in jwks['keys'] if key['kid'] == unverified_header['kid'])
-            pem_key = jwk.construct(rsa_key).to_pem()
-            payload = jwt.decode(token.split()[1], pem_key, algorithms=['RS256'], audience=API_AUDIENCE, issuer=f'https://{AUTH0_DOMAIN}/')
-            request.auth0_id = payload['sub']
-        except Exception as e:
-            print('Token Error:', str(e))
-            return jsonify({'message': 'Invalid token'}), 401
-        return f(*args, **kwargs)
-    return decorated
+# Registering blueprints
+app.register_blueprint(auth_bp, url_prefix="/api")
 
 # Profile CRUD
 @app.route('/api/profile', methods=['GET'])
