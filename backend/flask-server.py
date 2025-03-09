@@ -6,17 +6,13 @@ import os
 import requests
 from jose import jwk, jwt
 from functools import wraps
+from config import Config
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://fitness_user:coolfit@localhost/fitness_db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATBASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Config.SQLALCHEMY_TRACK_MODIFICATIONS
 db.init_app(app)
-
-AUTH0_DOMAIN = 'dev-s2v1m5kx4zm7z1o0.us.auth0.com' # when auth0 account config change, this should update
-API_AUDIENCE = 'https://fitness-api'  # when auth0 account config change, this should update
-CLIENT_ID = 'qZMUJaXuHnUwF2Bss6wRECp0HFmjP6s6' # when auth0 account config change, this should update
-CLIENT_SECRET = 'your-client-secret' # not sent to client due to security, need update if you use it
 
 jwks_url = f'https://{AUTH0_DOMAIN}/.well-known/jwks.json'
 jwks = requests.get(jwks_url).json()
