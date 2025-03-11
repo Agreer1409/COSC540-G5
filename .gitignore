@@ -10,3 +10,18 @@ venv/
 # Ignore a subdirectory in a specific path
 # my_folder/secret/
 client/node_modules
+
+# Backend (Python/Flask)
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.env
+backend/instance/
+backend/venv/
+
+# Frontend (React/Node.js)
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.env.*
