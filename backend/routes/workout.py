@@ -3,11 +3,11 @@ from flask import Blueprint, jsonify, request
 import os
 import sys
 from datetime import datetime, timezone  # Add for date parsing
-import logging # Add for debugging
+# import logging # Add for debugging
 
 # Configure logging
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+#logging.basicConfig(level=logging.DEBUG)
+#logger = logging.getLogger(__name__)
 
 
 # Add the backend directory to the path
@@ -37,18 +37,18 @@ def get_workouts():
 @requires_auth
 def create_workout():
     data = request.get_json()
-    logger.debug(f"Received POST data: {data}")  # Log the incoming data
+    # ger.debug(f"Received POST data: {data}")  # Log the incoming data
     user = User.query.filter_by(auth0_id=request.auth0_id).first()
     # Parse date from request, default to now if missing
     date_str = data.get("date")
-    logger.debug(f"Extracted date_str: {date_str}")  # Log the date
+    # logger.debug(f"Extracted date_str: {date_str}")  # Log the date
 
     if date_str:
         try:
             workout_date = datetime.fromisoformat(date_str.replace('Z', '+00:00'))  # Handle 'Z' suffix
-            logger.debug(f"Parsed workout_date: {workout_date}")
+            #logger.debug(f"Parsed workout_date: {workout_date}")
         except ValueError as e:
-            logger.error(f"Date parsing error: {e}")
+            #logger.error(f"Date parsing error: {e}")
             workout_date = datetime.now(timezone.utc)  # Fallback if parsing fails
     else:
         workout_date = datetime.now(timezone.utc)  # Default if no date provided
