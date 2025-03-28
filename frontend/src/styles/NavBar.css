@@ -1,6 +1,6 @@
 .navbar-img {
-    width: 40px;             /* Adjust as needed */
-    height: 40px;            /* Adjust as needed */
+    width: 30px;             /* Adjust as needed */
+    height: 30px;            /* Adjust as needed */
     border-radius: 50%;      /* Makes it circular */
     object-fit: cover;       /* Ensures the image fills the container */
     margin-right: 10px;      /* Spacing between the image and button */
@@ -11,3 +11,18 @@
     align-items: center;
 }
   
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff; /* White text */
+    display: flex;
+    align-items: center; /* Already applied in JSX, but reinforces */
+}
+  
+.nav-link:hover {
+    color: #ffd700 !important; /* Gold hover effect */
+}
+
+.navbar-logo {
+    height: 32px; /* Custom size */
+}

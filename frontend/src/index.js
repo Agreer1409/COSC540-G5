@@ -3,10 +3,12 @@ import { createRoot } from 'react-dom/client';
 import { Auth0Provider } from '@auth0/auth0-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/styles.css';
+import 'react-datepicker/dist/react-datepicker.css'; // Add this
 import axios from 'axios';
-import routes from './routes';
-import NavBar from "./components/Navbar"
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import routes from './routes';
+import NavBar from "./components/Navbar";
+
 
 const Root = () => {
   const [auth0Config, setAuth0Config] = useState(null);
@@ -50,15 +52,15 @@ const Root = () => {
 
       }}
     >
-      <NavBar/>
+      
       <BrowserRouter>
+        <NavBar />
         <Routes>
-          {routes.map((route) => (
+          { routes.map((route) => (
             <Route path={route.path} element={route.element} key={route.path} />
-          ))}
+          )) }
         </Routes>
       </BrowserRouter> 
-      {/* <App /> */}
     </Auth0Provider>
   );
 };

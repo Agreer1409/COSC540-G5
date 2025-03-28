@@ -18,3 +18,4 @@ class Workout(db.Model):
     name = db.Column(db.String(100))
     description = db.Column(db.Text)
     calories_burned = db.Column(db.Integer)
+    date = db.Column(db.DateTime, nullable=False) # Removed default=db.func.now(),let frontend to adjust

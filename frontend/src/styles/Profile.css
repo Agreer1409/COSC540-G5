@@ -1,0 +1,121 @@
+.profile-container {
+  padding: 40px;
+  max-width: 80%;
+  margin: 0 auto;
+  min-height: 100vh; /* Full height like Home.js */
+  background-color: #212529; /* Dark background like navbar */
+  color: #fff; /* White text for contrast */
+}
+
+.profile-title {
+  color: #ffd700; /* Gold, matching navbar hover effect */
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+}
+
+.profile-card {
+  background-color: #343a40; /* Slightly lighter dark shade */
+  border: none; /* Remove default border */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Modern shadow */
+}
+
+.card-title {
+  color: #fff; /* White for consistency */
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #ffd700; /* Gold labels */
+}
+
+/* Fix invisible text in inputs */
+.form-control {
+  background-color: #495057; /* Dark input background */
+  color: #fff; /* White text */
+  border: 1px solid #6c757d; /* Subtle border */
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.form-control::placeholder {
+  color: #adb5bd; /* Light gray placeholder */
+  opacity: 1; /* Ensure visibility */
+}
+
+.form-control:focus {
+  background-color: #495057; /* Keep dark on focus */
+  color: #fff; /* White text on focus */
+  border-color: #ffd700; /* Gold border on focus */
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* Gold glow */
+}
+
+/* Button styling */
+.btn-success {
+  background-color: #28a745; /* Green */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #218838; /* Darker green */
+}
+
+/* Login Prompt */
+.login-prompt {
+  text-align: center;
+  padding: 40px;
+  background-color: #343a40; /* Match card */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.login-prompt h2 {
+  color: #fff;
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+}
+
+.login-prompt p {
+  color: #adb5bd; /* Light gray */
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Darker blue */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 20px;
+  }
+  .profile-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-title {
+    font-size: 1.5rem;
+  }
+  .form-control {
+    padding: 8px;
+  }
+}
