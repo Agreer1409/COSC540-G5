@@ -13,7 +13,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.1); /* Adjusted overlay for consistency */
+    background: rgba(0, 0, 0, 0.2); /* Adjusted overlay for consistency */
     z-index: 1;
   }
 
@@ -22,7 +22,7 @@
     max-width: 80%; /* 80% width */
     margin: 0 auto; /* Center the navbar */
     border-radius: 10px; /* Rounded corners */
-    z-index: 2;
+    z-index: 3;
     position: relative;
     box-shadow: none; /*remove Subtle shadow to reduce contrast */
 }
@@ -71,12 +71,44 @@
     color: #fff;
 }
 
+/* Dropdown Menu Styling */
+.custom-dropdown .dropdown-menu {
+    background-color: #009ACD !important; /* Slightly darker blue than #00BFFF */
+    border: none;
+    border-radius: 5px;
+    z-index: 1000; /* Ensure dropdown is above other elements */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
+}
+  
+.custom-dropdown .dropdown-item {
+    color: #fff !important;
+    padding: 12px 24px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    border-radius: 3px; /* Rounded corners */
+}
+
+.custom-dropdown .dropdown-item:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle divider */
+}
+
+.custom-dropdown .dropdown-item:hover {
+    background-color: #ffd700 !important; /* Gold hover effect */
+    color: #212529 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+
+.custom-dropdown .dropdown-item:active {
+    background-color: #e6c200 !important; /* Slightly darker gold on click */
+    color: #212529 !important;
+}
+  
+
 .motivation-section {
 
     padding: 40px 20px;
     text-align: center;
     position: relative;
-    z-index: 2;
+    z-index: 2;/* Below dropdown */
 }
   
 /* Removed .motivation-section::before to avoid double overlay */

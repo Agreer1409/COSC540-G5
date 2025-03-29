@@ -39,10 +39,16 @@ function NavBar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto"> {/* ms-auto pushes all items to the right , me-auto to the left*/}
               <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-              <NavDropdown title="Workouts" id="workouts-dropdown">
-                <NavDropdown.Item as={Link} to="/workouts">Your Workouts</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/library">Workout Library</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/progress">Progress Checker</NavDropdown.Item>
+              <NavDropdown title="Workouts" id="workouts-dropdown" className="custom-dropdown">
+                <NavDropdown.Item as={Link} to="/workouts" onClick={() => console.log('Navigating to /workouts')}>
+                  Your Workouts
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/library" onClick={() => console.log('Navigating to /library')}>
+                  Workout Library
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/progress" onClick={() => console.log('Navigating to /progress')}>
+                  Progress Checker
+                </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link as={Link} to="/about">About</Nav.Link>
 
