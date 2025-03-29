@@ -39,6 +39,7 @@
 
 .nav-link {
     color: #fff !important;
+    transition: color 0.3s ease;
 }
 
 .nav-link:hover {
@@ -73,13 +74,25 @@
 
 /* Dropdown Menu Styling */
 .custom-dropdown .dropdown-menu {
-    background-color: #009ACD !important; /* Slightly darker blue than #00BFFF */
+    background: linear-gradient(135deg, #00A1D6, #009ACD) !important;
     border: none;
     border-radius: 5px;
     z-index: 1000; /* Ensure dropdown is above other elements */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
+    animation: fadeIn 0.3s ease-in-out;
 }
-  
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
 .custom-dropdown .dropdown-item {
     color: #fff !important;
     padding: 12px 24px;
@@ -100,6 +113,10 @@
 .custom-dropdown .dropdown-item:active {
     background-color: #e6c200 !important; /* Slightly darker gold on click */
     color: #212529 !important;
+}
+
+.custom-dropdown .dropdown-toggle::after {
+    border-top-color: #fff; /* White arrow */
 }
   
 
