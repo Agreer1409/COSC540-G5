@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/Home.css';
 
 // Import grid background images and icons
@@ -17,6 +18,21 @@ import adminBg from '../assets/figma/admin-bg.jpg';
 import adminIcon from '../assets/figma/admin-icon.png';
 
 function Home() {
+  const [motivation, setMotivation] = useState({ quote: '', author: '' });
+
+  useEffect(() => {
+    const fetchMotivation = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/motivation/random');
+        setMotivation(response.data);
+      } catch (error) {
+        console.error('Fetch Motivation Error:', error);
+        setMotivation({ quote: "Stay motivated!", author: "G5 Fitness" });
+      }
+    };
+    fetchMotivation();
+  }, []);
+
   // Grid data with imported assets
   const gridItems = [
     { title: 'Profile', path: '/profile', bgImage: profileBg, icon: profileIcon },
@@ -29,15 +45,6 @@ function Home() {
 
   return (
     <div className="home-page">
-      {/* Quote Section with Background */}
-      <div className="quote-section">
-        <div className="quote">
-          "Success isn’t always about greatness.
- It’s about consistency. Consistent hard work gains success." 
-– Dwayne "The Rock" Johnson
-        </div>
-      </div>
-
       {/* 2x3 Grid */}
       <div className="grid-container">
         {gridItems.map((item) => (
@@ -54,7 +61,8 @@ function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="text-center mt-4 text-muted">Copyright: G5 Fitness by @ G5 @</footer>
+      {/* <footer className="text-center mt-4 text-muted">Copyright: G5 Fitness by @ G5 @</footer> */}
+      <footer className="text-center mt-4 text-muted">Stay with us, KEEP Fitness @G5 Fitness@</footer>
     </div>
   );
 }

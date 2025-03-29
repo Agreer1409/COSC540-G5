@@ -19,7 +19,7 @@ const Root = () => {
     const fetchConfig = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/config');
-        console.log('Fetched Config:', response.data); // Debug log
+        //console.log('Fetched Config:', response.data); // Debug log
         setAuth0Config({
           domain: response.data.auth0_domain,
           clientId: response.data.client_id,

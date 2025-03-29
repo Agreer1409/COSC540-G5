@@ -11,6 +11,7 @@ from routes.auth import auth_bp
 from routes.profile import profile_bp
 from routes.workout import workout_bp
 from routes.library import library_bp
+from routes.motivation import motivation_bp
 
 # Load environment variables from .env
 load_dotenv()
@@ -27,6 +28,7 @@ app.register_blueprint(auth_bp, url_prefix="/api")
 app.register_blueprint(profile_bp, url_prefix="/api")
 app.register_blueprint(workout_bp, url_prefix="/api")
 app.register_blueprint(library_bp, url_prefix="/api")
+app.register_blueprint(motivation_bp, url_prefix="/api")
 
 if __name__ == "__main__":
     with app.app_context():

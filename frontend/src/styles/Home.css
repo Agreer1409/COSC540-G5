@@ -14,26 +14,6 @@
     flex-direction: column;
   }
   
-  /* Quote Section with Separate Background */
-  .quote-section {
-    background-image: url('../assets/figma/quote-bg.png'); /* Quote frame background */
-    background-size: cover;
-    background-position: center;
-    padding: 40px;
-    margin: 20px auto;
-    max-width: 80%; /* 80% of screen width */
-    width: 100%; /* Ensures it fills up to max-width */
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-  }
-  
-  .quote {
-    font-size: 2rem;
-    font-style: italic;
-  }
-  
   /* Grid Container */
   .grid-container {
     display: grid;
@@ -48,7 +28,7 @@
   /* Grid Card */
   .grid-card {
     text-decoration: none;
-    color: white;
+    color: #ffd700; /* Gold, matching titles */
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;

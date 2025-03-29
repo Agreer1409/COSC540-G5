@@ -45,6 +45,8 @@ function WorkoutsPage() {
     }
   }, [getAccessTokenSilently, apiUrl, loginWithRedirect]);
 
+  const [errorMessage, setErrorMessage] = useState(null); // Add error state
+
   const createWorkout = async () => {
     try {
       const token = await getAccessTokenSilently();
@@ -53,7 +55,7 @@ function WorkoutsPage() {
         date: newWorkout.date ? newWorkout.date.toISOString() : new Date().toISOString(), // Use selected date or fallback
         calories_burned: parseInt(newWorkout.calories_burned) || 0,
       };
-      console.log('Sending workout data:', workoutData); // Add this log
+
       await axios.post(`${apiUrl}/workouts`, workoutData, { headers: { Authorization: `Bearer ${token}` } });
       setNewWorkout({ 
         name: '', 
@@ -61,9 +63,11 @@ function WorkoutsPage() {
         calories_burned: 0, 
         date: null, // Reset to null after submission 
       }); // Reset form
+      setErrorMessage(null); // Clear error on success
       fetchWorkouts(); // Refresh list
     } catch (error) {
       console.error('Create Workout Error:', error.response || error);
+      setErrorMessage('Failed to add workout. Please try again.');// Set error message
     }
   };
 
@@ -156,6 +160,7 @@ function WorkoutsPage() {
           <div className="workouts-form card mb-4">
             <div className="card-body">
               <h2 className="card-title">Log a New Workout</h2>
+              {errorMessage && <p className="text-danger">{errorMessage}</p>}
               <div className="mb-3">
                 <label className="form-label">Workout Name</label>
                 <input
@@ -189,7 +194,6 @@ function WorkoutsPage() {
                 <DatePicker
                   selected={newWorkout.date}
                   onChange={(date) => {
-                    console.log('DatePicker selected:', date); // Log selected date
                     setNewWorkout({ ...newWorkout, date })
                   }}
                   className="form-control"
