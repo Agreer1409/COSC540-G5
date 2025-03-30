@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Auth0Provider } from '@auth0/auth0-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'; 
 import './styles/styles.css';
-import 'react-datepicker/dist/react-datepicker.css'; // Add this
+import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import routes from './routes';

@@ -10,6 +10,10 @@ class User(db.Model):
     name = db.Column(db.String(100))
     email = db.Column(db.String(100))
     calories_goal = db.Column(db.Integer, default=2000)
+    user_image = db.Column(db.String(255))  # URL or path to user image
+    dob = db.Column(db.Date)  # Date of birth
+    target_weight = db.Column(db.Float)  # Target weight in pounds
+    current_weight = db.Column(db.Float)  # Current weight in pounds
     workouts = db.relationship('Workout', backref='user', lazy=True)
 
 class Workout(db.Model):
