@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify, request
 from models import db, User
 from routes.auth import requires_auth
 import os
+import uuid
 from werkzeug.utils import secure_filename
 from datetime import datetime, date
 
@@ -75,11 +76,21 @@ def upload_image():
         return jsonify({"message": "File too large. Maximum size is 5MB."}), 400
     if file and allowed_file(file.filename):
         try:
-            filename = secure_filename(file.filename)
+            # Get the file extension
+            extension = file.filename.rsplit('.', 1)[1].lower()
+            # Generate a UUID and combine with user.id
+            unique_id = str(uuid.uuid4())
             user = User.query.filter_by(auth0_id=request.auth0_id).first()
             if not user:
                 return jsonify({"message": "User not found"}), 404
-            filename = f"{user.id}_{filename}"
+            filename = f"{user.id}_{unique_id}.{extension}"
+            # Delete old image if it exists
+            if user.user_image and os.path.exists(user.user_image.lstrip('/')):
+                try:
+                    os.remove(user.user_image.lstrip('/'))
+                except Exception as e:
+                    print(f"Failed to delete old image: {str(e)}")
+            # Save new image with user.id_uuid.extension format
             file_path = os.path.join(UPLOAD_FOLDER, filename)
             file.save(file_path)
             user.user_image = f"/{file_path}"
@@ -88,3 +99,18 @@ def upload_image():
         except Exception as e:
             return jsonify({"message": f"Failed to upload image: {str(e)}"}), 500
     return jsonify({"message": "Invalid file type"}), 400
+
+@profile_bp.route("/profile/delete", methods=["DELETE"])
+@requires_auth
+def delete_profile():
+    user = User.query.filter_by(auth0_id=request.auth0_id).first()
+    if not user:
+        return jsonify({"message": "User not found"}), 404
+    if user.user_image and os.path.exists(user.user_image.lstrip('/')):
+        try:
+            os.remove(user.user_image.lstrip('/'))
+        except Exception as e:
+            print(f"Failed to delete user image: {str(e)}")
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({"message": "Profile deleted"})
