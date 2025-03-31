@@ -2,6 +2,13 @@
 from flask import Blueprint, jsonify, request
 import os
 import sys
+from datetime import datetime, timezone  # Add for date parsing
+# import logging # Add for debugging
+
+# Configure logging
+#logging.basicConfig(level=logging.DEBUG)
+#logger = logging.getLogger(__name__)
+
 
 # Add the backend directory to the path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -14,15 +21,46 @@ workout_bp = Blueprint("workout", __name__)
 @requires_auth
 def get_workouts():
     user = User.query.filter_by(auth0_id=request.auth0_id).first()
-    workouts = [{"id": w.id, "name": w.name, "description": w.description, "calories_burned": w.calories_burned} for w in user.workouts]
+    workouts = [
+            {
+                "id": w.id, 
+                "name": w.name, 
+                "description": w.description,
+                "calories_burned": w.calories_burned,
+                "date": w.date.isoformat()  # Include date as ISO string
+            } 
+            for w in user.workouts
+        ]
     return jsonify(workouts)
 
 @workout_bp.route("/workouts", methods=["POST"])
 @requires_auth
 def create_workout():
     data = request.get_json()
+    # ger.debug(f"Received POST data: {data}")  # Log the incoming data
     user = User.query.filter_by(auth0_id=request.auth0_id).first()
-    workout = Workout(user_id=user.id, name=data["name"], description=data["description"], calories_burned=data["calories_burned"])
+    # Parse date from request, default to now if missing
+    date_str = data.get("date")
+    # logger.debug(f"Extracted date_str: {date_str}")  # Log the date
+
+    if date_str:
+        try:
+            workout_date = datetime.fromisoformat(date_str.replace('Z', '+00:00'))  # Handle 'Z' suffix
+            #logger.debug(f"Parsed workout_date: {workout_date}")
+        except ValueError as e:
+            #logger.error(f"Date parsing error: {e}")
+            workout_date = datetime.now(timezone.utc)  # Fallback if parsing fails
+    else:
+        workout_date = datetime.now(timezone.utc)  # Default if no date provided
+
+    ### workout_date = datetime.fromisoformat(date_str) if date_str else datetime.now(timezone.utc)
+    workout = Workout(
+        user_id = user.id, 
+        name = data["name"],
+        description = data["description"],
+        calories_burned = data["calories_burned"],
+        date = workout_date  
+    )
     db.session.add(workout)
     db.session.commit()
     return jsonify({"message": "Workout created", "id": workout.id})
@@ -37,6 +75,8 @@ def update_workout(id):
     workout.name = data.get("name", workout.name)
     workout.description = data.get("description", workout.description)
     workout.calories_burned = data.get("calories_burned", workout.calories_burned)
+    if "date" in data:  # Update date if provided
+        workout.date = datetime.fromisoformat(data["date"])
     db.session.commit()
     return jsonify({"message": "Workout updated"})
 

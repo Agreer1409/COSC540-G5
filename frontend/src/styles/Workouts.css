@@ -1,0 +1,171 @@
+.workouts-container {
+    /*Use the container class */
+    min-height: 100vh;
+    background-color: #00BFFF; /* LIGHT BLUE background */
+    color: #fff;
+    padding: 0 20px; /* Match profile-container */
+  }
+  
+  .workouts-title {
+    color: #ffd700; /* Gold */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .workouts-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .workouts-form,
+  .workouts-list,
+  .workouts-chart {
+    background-color: #00BFFF; /* light blue shade */
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-title {
+    color: #fff;
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    font-weight: 500;
+    color: #ffd700;
+  }
+  
+  .form-control {
+    background-color: #495057;
+    color: #fff;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .form-control::placeholder {
+    color: #adb5bd;
+    opacity: 1;
+  }
+  
+  .form-control:focus {
+    background-color: #495057;
+    color: #fff;
+    border-color: #ffd700;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  }
+
+  /* DatePicker Styling */
+  .react-datepicker-wrapper {
+    display: block; /* Ensure full width */
+  }
+
+  .react-datepicker {
+    background-color: #343a40; /* Dark calendar background */
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    color: #fff;
+  }
+
+  .react-datepicker__header {
+    background-color: #495057;
+    border-bottom: 1px solid #6c757d;
+    color: #ffd700; /* Gold header */
+  }
+
+  .react-datepicker__current-month,
+  .react-datepicker__day-name {
+    color: #ffd700;
+  }
+
+  .react-datepicker__day {
+    color: #fff;
+  }
+
+  .react-datepicker__day:hover {
+    background-color: #ffd700; /* Gold hover */
+    color: #212529;
+  }
+
+  .react-datepicker__day--selected,
+  .react-datepicker__day--keyboard-selected {
+    background-color: #28a745; /* Green for selected */
+    color: #fff;
+  }
+
+  .react-datepicker__triangle {
+    display: none; /* Remove triangle for cleaner look */
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  .list-group-item {
+    background-color: #4b684f; /* item background */
+    color: #fff;
+    border: 1px solid #6c757d;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+  
+  .text-muted {
+    color: #adb5bd !important; /* Light gray for date */
+  }
+  
+  /* Motivation Prompt */
+  .motivation-prompt {
+    text-align: center;
+    padding: 40px;
+    background-color: #343a40;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .motivation-quote {
+    color: #ffd700; /* Gold */
+    font-size: 2rem;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  
+  .motivation-prompt p {
+    color: #adb5bd;
+    margin-bottom: 20px;
+  }
+  
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .workouts-container {
+      padding: 20px;
+    }
+    .workouts-title {
+      font-size: 2rem;
+    }
+    .motivation-quote {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .workouts-title {
+      font-size: 1.5rem;
+    }
+  }

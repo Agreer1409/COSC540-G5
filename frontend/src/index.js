@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Auth0Provider } from '@auth0/auth0-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'; 
 import './styles/styles.css';
+import './styles/Common.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
-import routes from './routes';
-import NavBar from "./components/Navbar"
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import routes from './routes';
+import NavBar from "./components/Navbar";
+
 
 const Root = () => {
   const [auth0Config, setAuth0Config] = useState(null);
@@ -17,7 +21,7 @@ const Root = () => {
     const fetchConfig = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/config');
-        console.log('Fetched Config:', response.data); // Debug log
+        //console.log('Fetched Config:', response.data); // Debug log
         setAuth0Config({
           domain: response.data.auth0_domain,
           clientId: response.data.client_id,
@@ -46,19 +50,19 @@ const Root = () => {
       authorizationParams={{
         redirect_uri: window.location.origin,
         audience: auth0Config.audience,
-        scope: "read:current_user update:current_user_metadata openid"
+        scope: "read:current_user update:current_user_metadata openid profile email roles" ,//add roles for admin
 
       }}
     >
-      <NavBar/>
+      
       <BrowserRouter>
+        <NavBar />
         <Routes>
-          {routes.map((route) => (
+          { routes.map((route) => (
             <Route path={route.path} element={route.element} key={route.path} />
-          ))}
+          )) }
         </Routes>
       </BrowserRouter> 
-      {/* <App /> */}
     </Auth0Provider>
   );
 };

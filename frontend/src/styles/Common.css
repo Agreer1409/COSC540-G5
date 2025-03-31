@@ -1,0 +1,14 @@
+/* styles/Common.css */
+.container {
+    max-width: 80%;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      max-width: 90%;
+    }
+  }

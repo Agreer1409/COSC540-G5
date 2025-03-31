@@ -5,47 +5,84 @@
     line-height: 1.6;
   }
   
-  /* Hero Section */
-  .hero {
-    background: url('https://via.placeholder.com/1920x800?text=Fitness+Hero') no-repeat center center/cover;
-    height: 80vh;
-    position: relative;
+  .home-page {
+    min-height: 100vh;
+    background-image: url('../images/starship_flight_test_8.jpeg'); /* Main background */
+    background-size: cover;
+    background-position: center;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
   }
   
-  .overlay {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 2rem 3rem;
+  /* Grid Container */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 20px;
+    padding: 40px;
+    max-width: 80%; /* Match quote-section */
+    width: 100%; /* Ensures it fills up to max-width */
+    margin: 0 auto;
+  }
+  
+  /* Grid Card */
+  .grid-card {
+    text-decoration: none;
+    color: #ffd700; /* Gold, matching titles */
     border-radius: 10px;
-    text-align: center;
-    color: #fff;
+    overflow: hidden;
+    transition: transform 0.3s ease;
   }
   
-  .hero-title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+  .grid-card:hover {
+    transform: scale(1.05);
   }
   
-  .hero-subtitle {
+  .card-bg {
+    background-size: cover;
+    background-position: center;
+    height: 235px;  /* Fixed height, adjust as needed */
+    /* aspect-ratio: 4 / 3; /* Adjust based on your bg images */
+    /* height: auto; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .card-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  
+  .card-title {
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    color: #ffd700; /* Gold */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Kept for readability */
   }
   
-  .cta-button {
-    background-color: #ff6b6b;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+      
+    }
+    .quote-section {
+      padding: 20px;
+      
+    }
   }
   
-  .cta-button:hover {
-    background-color: #ff4c4c;
+  @media (max-width: 480px) {
+    .grid-container {
+      grid-template-columns: 1fr;  /* 1 column on phones */
+    
+    }
+    .quote {
+      font-size: 1.5rem;
+    }
   }
   
   /* Features Section */

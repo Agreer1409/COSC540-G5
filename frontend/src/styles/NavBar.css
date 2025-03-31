@@ -1,13 +1,161 @@
+.navbar-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-image: url('../assets/figma/quote-bg.png'); /* The background for entire wrapper */
+    background-size: cover;
+    background-position: center;
+}
+
+.navbar-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Adjusted overlay for consistency */
+    z-index: 1;
+  }
+
+.navbar-custom {
+    /* Use the container class */
+    background-color: #00BFFF !important; /* Light blue background */
+    z-index: 3;
+    position: relative;
+    box-shadow: none; /*remove Subtle shadow to reduce contrast */
+    padding: 0 20px; /* Match profile-container */
+}
+  
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff !important;
+}
+
+.navbar-brand:hover {
+    color: #ffd700 !important;
+}
+
+.nav-link {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ffd700 !important;
+}
+
 .navbar-img {
-    width: 40px;             /* Adjust as needed */
-    height: 40px;            /* Adjust as needed */
-    border-radius: 50%;      /* Makes it circular */
-    object-fit: cover;       /* Ensures the image fills the container */
-    margin-right: 10px;      /* Spacing between the image and button */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.btn-outline-primary {
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #ffd700;
+    color: #212529;
+}
+
+.btn-outline-danger {
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Dropdown Menu Styling */
+.custom-dropdown .dropdown-menu {
+    background: linear-gradient(135deg, #00A1D6, #009ACD) !important;
+    border: none;
+    border-radius: 5px;
+    z-index: 1000; /* Ensure dropdown is above other elements */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
+.custom-dropdown .dropdown-item {
+    color: #fff !important;
+    padding: 12px 24px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    border-radius: 3px; /* Rounded corners */
+}
+
+.custom-dropdown .dropdown-item:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle divider */
+}
+
+.custom-dropdown .dropdown-item:hover {
+    background-color: #ffd700 !important; /* Gold hover effect */
+    color: #212529 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+
+.custom-dropdown .dropdown-item:active {
+    background-color: #e6c200 !important; /* Slightly darker gold on click */
+    color: #212529 !important;
+}
+
+.custom-dropdown .dropdown-toggle::after {
+    border-top-color: #fff; /* White arrow */
 }
   
-.navbar-container {
-    display: flex;
-    align-items: center;
+
+.motivation-section {
+
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;/* Below dropdown */
 }
   
+/* Removed .motivation-section::before to avoid double overlay */
+
+
+.quote {
+    font-size: 2rem;
+    font-style: italic;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 2;
+}
+
+.quote-author {
+    font-size: 1.2rem;
+    font-style: normal;
+    color: #ffd700;
+}
+
+@media (max-width: 768px) {
+    .navbar-custom {
+        max-width: 90%; /* Slightly wider on smaller screens */
+      }
+    .quote {
+        font-size: 1.5rem;
+    }
+    .quote-author {
+        font-size: 1rem;
+    }
+    .motivation-section {
+        padding: 20px 10px;
+    }
+}
