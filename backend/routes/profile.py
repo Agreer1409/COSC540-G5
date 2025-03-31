@@ -1,4 +1,4 @@
-# backend/routes/profile.py
+# routes/profile.py
 from flask import Blueprint, jsonify, request
 from models import db, User
 from routes.auth import requires_auth
@@ -6,12 +6,15 @@ import os
 import uuid
 from werkzeug.utils import secure_filename
 from datetime import datetime, date
+import logging
 
 profile_bp = Blueprint("profile", __name__)
 
 UPLOAD_FOLDER = 'public/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB limit
+MAX_FILE_SIZE = 5 * 1024 * 1024
+
+logging.basicConfig(filename='app.log', level=logging.ERROR)
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -19,7 +22,7 @@ if not os.path.exists(UPLOAD_FOLDER):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@profile_bp.route("/profile", methods=["GET"])
+@profile_bp.route("/profile", methods=["GET"], endpoint="profile_get")
 @requires_auth
 def get_profile():
     user = User.query.filter_by(auth0_id=request.auth0_id).first()
@@ -37,7 +40,7 @@ def get_profile():
         "current_weight": user.current_weight
     })
 
-@profile_bp.route("/profile", methods=["PUT"])
+@profile_bp.route("/profile", methods=["PUT"], endpoint="profile_update")
 @requires_auth
 def update_profile():
     data = request.get_json()
@@ -64,7 +67,7 @@ def update_profile():
         "current_weight": user.current_weight
     })
 
-@profile_bp.route("/profile/upload-image", methods=["POST"])
+@profile_bp.route("/profile/upload-image", methods=["POST"], endpoint="profile_upload_image")
 @requires_auth
 def upload_image():
     if 'file' not in request.files:
@@ -76,31 +79,27 @@ def upload_image():
         return jsonify({"message": "File too large. Maximum size is 5MB."}), 400
     if file and allowed_file(file.filename):
         try:
-            # Get the file extension
             extension = file.filename.rsplit('.', 1)[1].lower()
-            # Generate a UUID and combine with user.id
-            unique_id = str(uuid.uuid4())
+            unique_filename = f"{uuid.uuid4()}.{extension}"
             user = User.query.filter_by(auth0_id=request.auth0_id).first()
             if not user:
                 return jsonify({"message": "User not found"}), 404
-            filename = f"{user.id}_{unique_id}.{extension}"
-            # Delete old image if it exists
             if user.user_image and os.path.exists(user.user_image.lstrip('/')):
                 try:
                     os.remove(user.user_image.lstrip('/'))
                 except Exception as e:
-                    print(f"Failed to delete old image: {str(e)}")
-            # Save new image with user.id_uuid.extension format
-            file_path = os.path.join(UPLOAD_FOLDER, filename)
+                    logging.error(f"Failed to delete old image: {str(e)}")
+            file_path = os.path.join(UPLOAD_FOLDER, unique_filename)
             file.save(file_path)
             user.user_image = f"/{file_path}"
             db.session.commit()
             return jsonify({"message": "Image uploaded", "user_image": user.user_image})
         except Exception as e:
+            logging.error(f"Failed to upload image: {str(e)}")
             return jsonify({"message": f"Failed to upload image: {str(e)}"}), 500
     return jsonify({"message": "Invalid file type"}), 400
 
-@profile_bp.route("/profile/delete", methods=["DELETE"])
+@profile_bp.route("/profile/delete", methods=["DELETE"], endpoint="profile_delete")
 @requires_auth
 def delete_profile():
     user = User.query.filter_by(auth0_id=request.auth0_id).first()
@@ -110,7 +109,7 @@ def delete_profile():
         try:
             os.remove(user.user_image.lstrip('/'))
         except Exception as e:
-            print(f"Failed to delete user image: {str(e)}")
+            logging.error(f"Failed to delete user image: {str(e)}")
     db.session.delete(user)
     db.session.commit()
     return jsonify({"message": "Profile deleted"})

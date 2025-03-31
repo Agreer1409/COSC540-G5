@@ -8,6 +8,7 @@ import logo from '../assets/g5fitness-logo.png'; // Import the logo
 
 function NavBar() {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const isAdmin = user && user['https://fitness-api/roles']?.includes('Admin'); // Adjust namespace
   const [motivation, setMotivation] = useState({ quote: '', author: '' });
 
   useEffect(() => {
@@ -25,7 +26,7 @@ function NavBar() {
 
   return (
     <div className="navbar-wrapper">
-      <Navbar  expand="lg" className="navbar-custom">
+      <Navbar  expand="lg" className="navbar-custom container">
         <Container>
           <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
             <img
@@ -51,6 +52,9 @@ function NavBar() {
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link as={Link} to="/about">About</Nav.Link>
+              {isAdmin && (
+                <Nav.Link as={Link} to="/admin">Admin</Nav.Link> // Hidden unless admin
+              )}
 
               {isAuthenticated ? (
                 <>
@@ -74,7 +78,7 @@ function NavBar() {
         </Container>
       </Navbar>
       {/* motivation section */}
-      <div className="motivation-section">
+      <div className="motivation-section container">
         <div className="quote">
           "{motivation.quote}"<br />
           <span className="quote-author">— {motivation.author}</span>

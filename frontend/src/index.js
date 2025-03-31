@@ -4,6 +4,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'; 
 import './styles/styles.css';
+import './styles/Common.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
@@ -49,7 +50,7 @@ const Root = () => {
       authorizationParams={{
         redirect_uri: window.location.origin,
         audience: auth0Config.audience,
-        scope: "read:current_user update:current_user_metadata openid"
+        scope: "read:current_user update:current_user_metadata openid profile email roles" ,//add roles for admin
 
       }}
     >

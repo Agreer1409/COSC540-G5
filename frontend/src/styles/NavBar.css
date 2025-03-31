@@ -18,13 +18,12 @@
   }
 
 .navbar-custom {
+    /* Use the container class */
     background-color: #00BFFF !important; /* Light blue background */
-    max-width: 80%; /* 80% width */
-    margin: 0 auto; /* Center the navbar */
-    border-radius: 10px; /* Rounded corners */
     z-index: 3;
     position: relative;
     box-shadow: none; /*remove Subtle shadow to reduce contrast */
+    padding: 0 20px; /* Match profile-container */
 }
   
 .navbar-brand {

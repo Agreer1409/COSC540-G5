@@ -1,10 +1,9 @@
 .workouts-container {
-    padding: 40px;
-    max-width: 80%;
-    margin: 0 auto;
+    /*Use the container class */
     min-height: 100vh;
-    background-color: #212529; /* Dark background */
+    background-color: #00BFFF; /* LIGHT BLUE background */
     color: #fff;
+    padding: 0 20px; /* Match profile-container */
   }
   
   .workouts-title {
@@ -25,7 +24,7 @@
   .workouts-form,
   .workouts-list,
   .workouts-chart {
-    background-color: #343a40; /* Lighter dark shade */
+    background-color: #00BFFF; /* light blue shade */
     border: none;
     border-radius: 10px;
     padding: 20px;
@@ -119,7 +118,7 @@
   
   
   .list-group-item {
-    background-color: #495057; /* Dark item background */
+    background-color: #4b684f; /* item background */
     color: #fff;
     border: 1px solid #6c757d;
     margin-bottom: 5px;

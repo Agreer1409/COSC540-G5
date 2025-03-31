@@ -13,8 +13,9 @@ function Profile() {
   const [isSaving, setIsSaving] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [motivation, setMotivation] = useState({ quote: '', author: '' });
   const apiUrl = 'http://localhost:5000/api';
-  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
   const ALLOWED_EXTENSIONS = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
 
   const fetchData = useCallback(async () => {
@@ -30,8 +31,22 @@ function Profile() {
     }
   }, [getAccessTokenSilently, apiUrl, loginWithRedirect]);
 
+  const fetchMotivation = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/motivation/random');
+      setMotivation(response.data);
+    } catch (error) {
+      console.error('Fetch Motivation Error:', error);
+      setMotivation({ quote: "Stay motivated!", author: "G5 Fitness" });
+    }
+  };
+
   useEffect(() => {
-    if (isAuthenticated) fetchData();
+    if (isAuthenticated) {
+      fetchData();
+    } else {
+      fetchMotivation();
+    }
   }, [isAuthenticated, fetchData]);
 
   useEffect(() => {
@@ -61,7 +76,7 @@ function Profile() {
   };
 
   const uploadImage = async () => {
-    if (!selectedFile) return;
+    if (!selectedFile) return null;
     const formData = new FormData();
     formData.append('file', selectedFile);
     try {
@@ -72,9 +87,8 @@ function Profile() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      setProfile({ ...profile, user_image: response.data.user_image });
-      setOriginalProfile({ ...originalProfile, user_image: response.data.user_image });
       setSelectedFile(null);
+      return response.data.user_image;
     } catch (error) {
       console.error('Image Upload Error:', error.response || error);
       throw new Error(error.response?.data?.message || 'Failed to upload image');
@@ -96,9 +110,13 @@ function Profile() {
     setSuccessMessage(null);
     setErrorMessage(null);
     try {
+      const newImageUrl = await uploadImage();
+      const updatedProfile = { ...profile };
+      if (newImageUrl) {
+        updatedProfile.user_image = newImageUrl;
+      }
       const token = await getAccessTokenSilently();
-      const response = await axios.put(`${apiUrl}/profile`, profile, { headers: { Authorization: `Bearer ${token}` } });
-      await uploadImage();
+      const response = await axios.put(`${apiUrl}/profile`, updatedProfile, { headers: { Authorization: `Bearer ${token}` } });
       setProfile(response.data);
       setOriginalProfile(response.data);
       setSuccessMessage('Profile updated successfully!');
@@ -121,7 +139,7 @@ function Profile() {
   return (
     <div className={`profile-page ${theme}`}>
       {isAuthenticated ? (
-        <div className="profile-container">
+        <div className="profile-container container">
           <div className="profile-header">
             <div className="profile-image">
               {isEditing ? (
@@ -250,11 +268,12 @@ function Profile() {
           </div>
         </div>
       ) : (
-        <div className="login-prompt">
-          <h2>Profile</h2>
-          <p>Please log in to view and edit your profile.</p>
+        <div className="motivation-prompt container">
+          <h2 className="motivation-quote">"{motivation.quote}"</h2>
+          <span className="quote-author">— {motivation.author}</span>
+          <p>Log in or register to track your profile and progress!</p>
           <button className="btn btn-primary" onClick={() => loginWithRedirect()}>
-            Log In
+            Log In / Sign Up
           </button>
         </div>
       )}

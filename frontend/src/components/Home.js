@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import '../styles/Home.css';
 
@@ -18,6 +19,7 @@ import adminBg from '../assets/figma/admin-bg.jpg';
 import adminIcon from '../assets/figma/admin-icon.png';
 
 function Home() {
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
   const [motivation, setMotivation] = useState({ quote: '', author: '' });
 
   useEffect(() => {
@@ -45,24 +47,28 @@ function Home() {
 
   return (
     <div className="home-page">
-      {/* 2x3 Grid */}
-      <div className="grid-container">
-        {gridItems.map((item) => (
-          <Link to={item.path} key={item.title} className="grid-card">
-            <div
-              className="card-bg"
-              style={{ backgroundImage: `url(${item.bgImage})` }}
-            >
-              <img src={item.icon} alt={item.title} className="card-icon" />
-              <h3 className="card-title">{item.title}</h3>
-            </div>
-          </Link>
-        ))}
-      </div>
-
-      {/* Footer */}
-      {/* <footer className="text-center mt-4 text-muted">Copyright: G5 Fitness by @ G5 @</footer> */}
-      <footer className="text-center mt-4 text-muted">Stay with us, KEEP Fitness @G5 Fitness@</footer>
+      {isAuthenticated ? (
+        <div className="grid-container container">
+          {gridItems.map((item) => (
+            <Link to={item.path} key={item.title} className="grid-card">
+              <div className="card-bg" style={{ backgroundImage: `url(${item.bgImage})` }}>
+                <img src={item.icon} alt={item.title} className="card-icon" />
+                <h3 className="card-title">{item.title}</h3>
+              </div>
+            </Link>
+          ))}
+          <footer className="text-center mt-4 text-muted">Let's get started! @ G5 Fitness @</footer>
+        </div>
+      ) : (
+        <div className="motivation-prompt container">
+          <h2 className="motivation-quote">"{motivation.quote}"</h2>
+          <span className="quote-author">— {motivation.author}</span>
+          <p>Log in or register to track your workouts and see your progress!</p>
+          <button className="btn btn-primary" onClick={() => loginWithRedirect()}>
+            Log In / Sign Up
+          </button>
+        </div>
+      )}
     </div>
   );
 }
