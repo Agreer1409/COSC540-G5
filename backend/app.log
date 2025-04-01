@@ -821,3 +821,66 @@ INFO:werkzeug:127.0.0.1 - - [30/Mar/2025 18:01:46] "GET /api/motivation/random H
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2025 18:01:48] "GET /api/motivation/random HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2025 18:01:50] "GET /api/motivation/random HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2025 18:01:59] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 137-889-244
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:19:09] "GET /api/config HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:19:09] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:19:09] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:19:36] "GET /api/config HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:19:36] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:19:36] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:19:46] "OPTIONS /api/profile HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:19:47] "[35m[1mGET /api/profile HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:20:33] "OPTIONS /api/profile HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:20:33] "[35m[1mPUT /api/profile HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:20:47] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:20:57] "OPTIONS /api/workouts HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:20:58] "[35m[1mGET /api/workouts HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:23:17] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:24:53] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:25:02] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:25:10] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:25:14] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:25:32] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:25:46] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:25:50] "OPTIONS /api/profile HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:25:50] "[35m[1mGET /api/profile HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:28:14] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:28:27] "OPTIONS /api/profile HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:28:28] "[35m[1mGET /api/profile HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:28:29] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:32:41] "OPTIONS /api/profile HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:32:41] "[35m[1mGET /api/profile HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:38:39] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:46:13] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 21:49:06] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:07:00] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:07:45] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:11:46] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:16:41] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:17:45] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:18:18] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:21:22] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:22:48] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:25:26] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:27:44] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:28:09] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:29:39] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:31:26] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:34:58] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:35:50] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:36:25] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:36:47] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:38:49] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:39:08] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:39:25] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:41:08] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:41:32] "GET /api/motivation/random HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:42:24] "OPTIONS /api/profile HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:42:25] "[35m[1mPUT /api/profile HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:42:36] "OPTIONS /api/profile HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2025 22:42:37] "[35m[1mPUT /api/profile HTTP/1.1[0m" 500 -
