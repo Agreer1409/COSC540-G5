@@ -24,6 +24,8 @@
     position: relative;
     box-shadow: none; /*remove Subtle shadow to reduce contrast */
     padding: 0 20px; /* Match profile-container */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
   
 .navbar-brand {
@@ -51,6 +53,14 @@
     border-radius: 50%;
 }
 
+.navbar-logo {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbar-logo:hover {
+    color:#ffd700;
+}
 .btn-outline-primary {
     color: #fff;
     border-color: #fff;

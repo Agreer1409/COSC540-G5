@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import '../styles/NavBar.css';
-import logo from '../assets/g5fitness-logo.png'; // Import the logo
+import {ReactComponent as Logo} from '../assets/logo.svg'; // Import the logo
 
 function NavBar() {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
@@ -29,12 +29,7 @@ function NavBar() {
       <Navbar  expand="lg" className="navbar-custom container">
         <Container>
           <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-            <img
-              src={logo}
-              alt="G5 Fitness Logo"
-              className="navbar-logo me-2" // Margin-end for spacing
-            />
-            G5 Fitness
+            <Logo className="navbar-logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
