@@ -1,10 +1,9 @@
 .app-container {
-  background-image: url('/src/images/starship_flight_test_8.jpeg');
+  background-image: url('../images/pexels-matthew-montrone-230847-1324803.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
-  padding: 20px;
 }
 
 /* Increase transparency for cards */
@@ -95,4 +94,9 @@
 .text-muted {
   color: #ffffff !important; /* White footer text */
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+.copyright-footer {
+  text-align: center;
+  padding: 1rem;
+  color:white;
 }

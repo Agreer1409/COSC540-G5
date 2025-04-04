@@ -54,7 +54,7 @@ const Root = () => {
 
       }}
     >
-      
+    <div className='app-container'>  
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -62,8 +62,11 @@ const Root = () => {
             <Route path={route.path} element={route.element} key={route.path} />
           )) }
         </Routes>
-      </BrowserRouter> 
+      </BrowserRouter>
+      <footer className='copyright-footer'> Copyright:   G5 Fitness by @group5@ </footer>
+      </div>
     </Auth0Provider>
+    
   );
 };
 

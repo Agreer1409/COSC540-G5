@@ -1,40 +1,19 @@
 import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
 import '../styles/NavBar.css';
-import logo from '../assets/g5fitness-logo.png'; // Import the logo
+import {ReactComponent as Logo} from '../assets/logo.svg'; // Import the logo
 
 function NavBar() {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   const isAdmin = user && user['https://fitness-api/roles']?.includes('Admin'); // Adjust namespace
-  const [motivation, setMotivation] = useState({ quote: '', author: '' });
-
-  useEffect(() => {
-    const fetchMotivation = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/motivation/random');
-        setMotivation(response.data);
-      } catch (error) {
-        console.error('Fetch Motivation Error:', error);
-        setMotivation({ quote: "Stay motivated!", author: "G5 Fitness" });
-      }
-    };
-    fetchMotivation();
-  }, []);
 
   return (
     <div className="navbar-wrapper">
       <Navbar  expand="lg" className="navbar-custom container">
         <Container>
           <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-            <img
-              src={logo}
-              alt="G5 Fitness Logo"
-              className="navbar-logo me-2" // Margin-end for spacing
-            />
-            G5 Fitness
+            <Logo className="navbar-logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -83,13 +62,7 @@ function NavBar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {/* motivation section */}
-      <div className="motivation-section container">
-        <div className="quote">
-          "{motivation.quote}"<br />
-          <span className="quote-author">— {motivation.author}</span>
-        </div>
-      </div>
+      
     </div>
   );
 }
