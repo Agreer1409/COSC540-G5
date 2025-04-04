@@ -7,19 +7,51 @@
   
   .home-page {
     min-height: 100vh;
-    /*background-image: url('../images/starship_flight_test_8.jpeg'); /* Main background */
     background-size: cover;
     background-position: center;
     display: flex;
     flex-direction: column;
   }
   
+  .home-page-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:20px;
+    color:white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+  }
+
+  .motivation-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .quote {
+    background: grey;
+    border-radius: 10px;
+    width: fit-content;
+    padding:20px 80px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.5);
+  }
+  
+  .motivation-prompt-home {
+    text-align: center;
+    padding: 40px;
+    margin-top: 50px;
+    background-color: #343a40;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color:white;
+  }
+
   /* Grid Container */
   .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
     gap: 20px;
-    padding: 40px;
+    padding: 20px 40px 40px 40px;
     max-width: 80%; /* Match quote-section */
     width: 100%; /* Ensures it fills up to max-width */
     margin: 0 auto;
@@ -67,6 +99,8 @@
 
   .card-title-custom {
     font-size: 2rem;
+    text-align: center;
+    
     /* color: white; Gold */
     /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); Kept for readability */
   }
@@ -81,6 +115,9 @@
       padding: 20px;
       
     }
+    .card-title-custom {
+      font-size: 1.5rem;
+    }
   }
   
   @media (max-width: 480px) {
@@ -90,6 +127,9 @@
     }
     .quote {
       font-size: 1.5rem;
+    }
+    .card-title-custom {
+      font-size: 1rem;
     }
   }
   
@@ -110,12 +150,3 @@
   .feature h2 {
     margin-bottom: 1rem;
   }
-  
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
-  }
-  

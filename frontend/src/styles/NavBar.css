@@ -1,9 +1,9 @@
 .navbar-wrapper {
     position: relative;
     overflow: hidden;
-    background-image: url('../assets/figma/quote-bg.png'); /* The background for entire wrapper */
-    background-size: cover;
-    background-position: center;
+    /* background-image: url('../assets/figma/quote-bg.png'); The background for entire wrapper */
+    /* background-size: cover;
+    background-position: center; */
 }
 
 .navbar-wrapper::before {
@@ -13,7 +13,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2); /* Adjusted overlay for consistency */
+    /* background: rgba(0, 0, 0, 0.2); Adjusted overlay for consistency */
     z-index: 1;
   }
 

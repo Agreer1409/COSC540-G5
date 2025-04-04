@@ -46,8 +46,22 @@ function Home() {
   ];
 
   return (
+    
+    
     <div className="home-page">
+      
       {isAuthenticated ? (
+        <div>
+          {/* motivation section */}
+          <div className="motivation-section container">
+            <div className="quote">
+              "{motivation.quote}"<br />
+            <span className="quote-author">— {motivation.author}</span>
+            </div>
+          </div>
+          <div className='home-page-title'>
+            <h1>What are you looking for?</h1>
+          </div>
         <div className="grid-container container">
           {gridItems.map((item) => (
             <Link to={item.path} key={item.title} className="grid-card">
@@ -59,8 +73,9 @@ function Home() {
           ))}
           <footer className="text-center mt-4 text-muted">Let's get started! @ G5 Fitness @</footer>
         </div>
+        </div>
       ) : (
-        <div className="motivation-prompt container">
+        <div className="motivation-prompt-home container">
           <h2 className="motivation-quote">"{motivation.quote}"</h2>
           <span className="quote-author">— {motivation.author}</span>
           <p>Log in or register to track your workouts and see your progress!</p>
@@ -68,6 +83,7 @@ function Home() {
             Log In / Sign Up
           </button>
         </div>
+      
       )}
     </div>
   );
